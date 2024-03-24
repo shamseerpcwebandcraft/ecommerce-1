@@ -5,6 +5,7 @@ import { APIResponse, makeJsonResponse } from 'App/utils/JsonResponse'
 import UserCartValidator from 'App/Validators/UserCartValidator'
 
 import ProductListingValidator from 'App/Validators/ProductListingValidator'
+import CartUpdateValidator from 'App/Validators/CartUpdateValidator'
 
 export default class ProductsController {
     private productRepository: productRepository
@@ -197,10 +198,10 @@ export default class ProductsController {
     let httpStatusCode: number = HttpStatusCodes.HTTP_VALIDATION_ERROR
     let isSuccess: boolean = false
     let response: APIResponse
-    const user_id= ctx.request.user.userId
+   // const user_id= ctx.request.user.userId
   
-    let { quanitity } = await ctx.request.validate(UserCartValidator)
-    const getUserCartResponse = await this.productRepository.updateCart( user_id,quantity )
+    let { quanitity } = await ctx.request.validate(CartUpdateValidator)
+    const getUserCartResponse = await this.productRepository.updateCart( quanitity )
   
     if (!getUserCartResponse) {
       response = makeJsonResponse('cart is not available', {}, {}, httpStatusCode)

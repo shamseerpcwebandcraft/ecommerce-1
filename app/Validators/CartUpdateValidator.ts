@@ -24,7 +24,7 @@ export default class CartUpdateValidator {
    *    ```
    */
   public schema = schema.create({
-    quantity:schema.number()
+    quanitity:schema.number()
   })
 
   /**

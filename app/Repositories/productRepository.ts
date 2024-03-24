@@ -146,13 +146,13 @@ export default class productRepository {
 
     
 
-    public async updateCart( quantity ): Promise<any> {
+    public async updateCart( quanitity ): Promise<any> {
  
     try {
       
    
       const isCartExist = await Cart.updateOne({
-        quantity:quantity
+        quantity:quanitity
       })
       if(!isCartExist){
         return 'your updation is failed'
