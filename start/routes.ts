@@ -34,7 +34,7 @@ Route.get("/product", "ProductsController.listproduct").middleware('auth')
 Route.post("/cart", "ProductsController.addToCart").middleware('auth')
 Route.get("/cart", "ProductsController.getCart").middleware('auth')
 Route.delete("/cart/delete", "ProductsController.deleteCart").middleware('auth')
-
+Route.post("/cart/update", "ProductsController.updateCart").middleware('auth')
 
 }).prefix('/user')
 

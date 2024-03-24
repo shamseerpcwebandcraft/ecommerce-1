@@ -193,6 +193,33 @@ export default class ProductsController {
    }
   
   }
+  public async updateCart(ctx:HttpContextContract){
+    let httpStatusCode: number = HttpStatusCodes.HTTP_VALIDATION_ERROR
+    let isSuccess: boolean = false
+    let response: APIResponse
+    const user_id= ctx.request.user.userId
+  
+    let { quanitity } = await ctx.request.validate(UserCartValidator)
+    const getUserCartResponse = await this.productRepository.updateCart( user_id,quantity )
+  
+    if (!getUserCartResponse) {
+      response = makeJsonResponse('cart is not available', {}, {}, httpStatusCode)
+    } else {
+        httpStatusCode = HttpStatusCodes.HTTP_OK;
+        isSuccess = true;
+        response = makeJsonResponse(
+          "cart updation successfully",
+          getUserCartResponse,
+          {},
+          httpStatusCode,
+          isSuccess
+        );
+    ctx.response.status(httpStatusCode).json(response)
+       
+  
+   }
+  
+  }
 
 
 
